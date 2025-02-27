@@ -76,16 +76,7 @@
     </section>
     <nav>
       <div>
-        <!-- <div>logo</div> -->
-        <!-- <ul>
-          <li>HOME</li>
-          <li>Professional summary</li>
-          <li>Skills</li>
-          <li>Experiences</li>
-          <li>Project gallery</li>
-          <li>Contact information</li>
-          <li>Resume/CV download</li>
-        </ul> -->
+
       </div>
     </nav>
   </body>
@@ -102,11 +93,10 @@
         <div class="container mx-auto flex justify-between items-center">
             <img class="h-24 w-auto" src="./images/Cindy_Foli-removebg-preview.png" alt="Cindy Foli">
 
-            <div class="hidden md:flex space-x-4 nav-links" id="navLinks">
+            <div class="hidden md:flex gap-4 mt-2 space-x-4 nav-links" id="navLinks">
                 <a href="#" class="hover:text-gray-600">Home</a>
                 <a href="#" class="hover:text-gray-600">About</a>
                 <a href="#" class="hover:text-gray-600">Skills</a>
-                <a href="#" class="hover:text-gray-600">Experiences</a>
                 <a href="#" class="hover:text-gray-600">Project Gallery</a>
                 <a href="#" class="hover:text-gray-600">Contact</a>
               </div>
@@ -117,25 +107,30 @@
                 </svg>
             </button>
         </div>
-        <div id="mobileNavLinks" class="hidden md:hidden mt-2 space-y-2">
+        <!-- <div id="nav-links" class="hidden md:hidden mt-2 space-y-2">
             <a href="#" class="block hover:text-gray-600">Home</a>
             <a href="#" class="block hover:text-gray-600">About</a>
             <a href="#" class="block hover:text-gray-600">Services</a>
             <a href="#" class="block hover:text-gray-600">Contact</a>
-        </div>
+        </div> -->
     </nav>
-
-    <!-- <script>
-        const menuButton = document.getElementById('menuButton');
-        const navLinks = document.getElementById('navLinks');
-        const mobileNavLinks = document.getElementById('mobileNavLinks');
-
-        menuButton.addEventListener('click', () => {
-            mobileNavLinks.classList.toggle('hidden');
-        });
-
-    </script> -->
  
+<!-- <div class="relative inline-block text-left"> -->
+  <!-- Dropdown Button -->
+  <!-- <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none">
+    Options
+  </button> -->
+
+  <!-- Dropdown Menu -->
+  <!-- <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+    <div class="py-1" role="menu" aria-orientation="vertical">
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</a>
+    </div>
+  </div>
+</div> -->
+
 <section class="bg-gray-400 text-white py-24 px-6 md:inline-flex"> 
   <div class="text-center my-12">
     <h2 class="text-4xl font-bold text-white-600 mb-4">What I Do</h2>
@@ -148,45 +143,86 @@
 <section class="bg-gray-100">
 <div class="container mx-auto">
 <div>
-<h3>My Skills</h3>
-<div>
-  <div>
-    <h3>HTML5</h3>
-    <p>Building semantic and accessible web structures</p>
+<h3 class="text-3xl font-bold text-center mb-8 text-gray-800">My Skills</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+  <!-- <div class="grid grid-cols-3 gap-4">
+    <div class="...">01</div>
+    <div class="...">02</div>
+    <div class="...">03</div>
+    <div class="col-span-2 ...">04</div>
+    <div class="...">05</div>
+    <div class="...">06</div>
+    <div class="col-span-2 ...">07</div>
+  </div> -->
+
+  <!-- <div class="grid grid-flow-col grid-rows-4 gap-4">
+    <div>01</div>
+   ... -->
+    <!-- <div>05</div>
+    <div class="row-span-3 grid grid-rows-subgrid gap-4">
+      <div class="row-start-2">06</div>
+    </div>
+    <div>07</div> -->
+    <!-- ... -->
+    <!-- <div>10</div>
+  </div> -->
+  
+
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h4 class="text-xl font-semibold mb-2 text-gray-700">HTML5</h4>
+    <p class="text-gray-600">Building semantic and accessible web structures</p>
   </div>
 
-  <div>
-    <h4>CSS3</h4>
-    <p>creating responsive and visually appealing designs</p>
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h5 class="text-xl font-semibold mb-2 text-gray-700">CSS3</h5>
+    <p class="text-gray-600">creating responsive and visually appealing designs</p>
   </div>
 
-  <div>
-    <h5>JavaScript</h5>
-    <p>Interactive and dynamic Web applications</p>
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h6 class="text-xl font-semibold mb-2 text-gray-700">JavaScript</h6>
+    <p class="text-gray-600">Interactive and dynamic Web applications</p>
   </div>
 
-  <div>
-    <h5>React</h5>
-    <p>Building scalable and maintainable userfaces</p>
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h7 class="text-xl font-semibold mb-2 text-gray-700">React</h7>
+    <p class="text-gray-600">Building scalable and maintainable userfaces</p>
   </div>
   
-  <div>
-    <h6>Tailwind</h6>
-    <p>Rapid UI development with utility first framework </p>
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h8 class="text-xl font-semibold mb-2 text-gray-700">Tailwind</h8>
+    <p class="text-gray-600">Rapid UI development with utility first framework </p>
   </div>
 
-  <div>
-    <h7>Nodejs</h7>
-    <p>Developing Sever side applications and APIs</p>
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
+    <h9 class="text-xl font-semibold mb-2 text-gray-700">Nodejs</h9>
+    <p class="text-gray-600">Developing Sever side applications and APIs</p>
   </div>
 
-  <div>
-    <h8>Figma</h8>
-    <p>Creating and testing designs for digital products and experiences</p>
-  </div>
-
+  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg ">
+    <h10 class="text-xl font-semibold mb-2 text-gray-700">Figma</h10>
+    <p class="text-gray-600">Creating and testing designs for digital products and experiences</p>
 </div>
 </div>
+</div>
+</section>
+
+<section>
+  <div>
+    <h2>My Projects</h2>
+    <div>
+      <div>
+        image 
+        <div>
+          <h3>project 1</h3>
+          <p>short description</p>
+          <a href="#">View Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
 </section>
 </body>
 </html>
