@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
       @keyframes typing {
         from {
@@ -15,17 +17,18 @@
         }
       }
 
+
       .typing-animation {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 0.15rem solid orchid;
-        animation: typing 2s steps(40, end);
+        border-right: 0.15rem;
+        animation: typing 3s steps(50);
       }
       
       .sticky-nav {
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 4;
             background-color: rgba(255, 255, 255, 0.95); 
             backdrop-filter: blur(10px); 
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,37 +36,70 @@
         .nav-links{
             transition: all 0.3s ease-in-out;
         }
+
+        .project-item {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 200px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+            border-radius: 8px;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            transform: rotateY(180deg);
+            border-radius: 8px;
+            padding: 1rem;
+        }
     </style>
   </head>
   <body>
-    <section
-      class="h-screen flex min-h-screen items-center justify-center bg-gradient-to-tr to-fuchsia-900 from-yellow-200 p-10"
-    >
-      <div
-        class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
-      >
-        <div
-          class="md:text-left text-center overflow-hidden whitespace-nowrap text-white"
-        >
-          <p
-            class="text-3xl font-bold mb-2 typing-animation"
-            style="width: 5em"
-          >
-            I am
-          </p>
-          <h1
-            class="text-7xl font-bold mb-8 typing-animation"
-            style="width: 5em"
-          >
-            Cindy Foli
-          </h1>
-          <p
-            class="text-5xl font-bold mb-8 typing-animation"
-            style="width: 5em"
-          >
-            A Web Developer
-          </p>
-          <button class="bg-white hover:bg-fuchsia text-fuchsia-900 font-bold py-3 px-6 rounded-full">Download CV</button>
+    <section class="h-screen flex min-h-screen items-center justify-center bg-gradient-to-tr to-fuchsia-900 from-yellow-200 p-10" id="home">
+      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-9 items-center">
+        <div class="md:text-left text-white">
+          <p class="text-3xl font-bold mb-2 typing-animation" style="width: 5em">I am</p>
+          <h1 class="text-7xl font-bold mb-8 typing-animation" style="width: 5em">Cindy Foli</h1>
+          <p class="text-5xl font-bold mb-8 typing-animation" style="width: 5em">A Web Developer</p>
+            <a href="#" class="bg-white hover:bg-fuchsia-900 text-fuchsia-900 hover:text-white font-bold py-3 px-6 rounded-full">Download CV</a>
         </div>
         <div>
           <img
@@ -82,11 +118,6 @@
   </body>
 </html>
 
-    <style>
-       
-
-    </style>
-</head>
 <body class="min-h-screen">
 
     <nav class="sticky-nav p-4">
@@ -94,11 +125,11 @@
             <img class="h-24 w-auto" src="./images/Cindy_Foli-removebg-preview.png" alt="Cindy Foli">
 
             <div class="hidden md:flex gap-4 mt-2 space-x-4 nav-links" id="navLinks">
-                <a href="#" class="hover:text-gray-600">Home</a>
-                <a href="#" class="hover:text-gray-600">About</a>
-                <a href="#" class="hover:text-gray-600">Skills</a>
-                <a href="#" class="hover:text-gray-600">Project Gallery</a>
-                <a href="#" class="hover:text-gray-600">Contact</a>
+                <a href="#home" class="hover:text-fuchsia-900">Home</a>
+                <a href="#about" class="hover:text-fuchsia-800">About</a>
+                <a href="#skills" class="hover:text-fuchsia-700">Skills</a>
+                <a href="#projects" class="hover:text-fuchsia-600">Project Gallery</a>
+                <a href="#contact" class="hover:text-fuchsia-500">Contact</a>
               </div>
               
             <button id="menuButton" class="md:hidden">
@@ -107,123 +138,234 @@
                 </svg>
             </button>
         </div>
-        <!-- <div id="nav-links" class="hidden md:hidden mt-2 space-y-2">
-            <a href="#" class="block hover:text-gray-600">Home</a>
-            <a href="#" class="block hover:text-gray-600">About</a>
-            <a href="#" class="block hover:text-gray-600">Services</a>
-            <a href="#" class="block hover:text-gray-600">Contact</a>
-        </div> -->
     </nav>
  
-<!-- <div class="relative inline-block text-left"> -->
-  <!-- Dropdown Button -->
-  <!-- <button id="dropdownButton" class="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none">
-    Options
-  </button> -->
 
-  <!-- Dropdown Menu -->
-  <!-- <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-    <div class="py-1" role="menu" aria-orientation="vertical">
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Logout</a>
-    </div>
-  </div>
-</div> -->
-
-<section class="bg-gray-400 text-white py-24 px-6 md:inline-flex"> 
-  <div class="text-center my-12">
-    <h2 class="text-4xl font-bold text-white-600 mb-4">What I Do</h2>
-    <div class="flex items-center justify-center mx-24">
-      <p class="m-6 text-lg text-gray-600 uppercase tracking-wider x text-l font-medium">A Web Developer passionate about building efficient, visually appealing, user-friendly websites and applications, focusing on clean code, excellent performance and seamless user experiences.</p>
-    </div>
+<section class="bg-gray-900 text-white py-16 px-6 md:px-12 lg:px-24" id="about">
+  <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-4xl font-bold bg-clip-text bg-gradient-to-r from-fuchsia-400 to-gray-600">
+          What I Do
+      </h2>
+      <p class="mt-6 text-lg text-gray-300 leading-relaxed text-justify md:text-center">
+          I craft digital experiences that blend logic with creativity, 
+          turning complex ideas into elegant solutions.passionate about building efficient, visually appealing, user-friendly websites and applications, focusing on clean code, excellent performance and seamless user experiences.
+      </p>
   </div>
 </section>
 
 <section class="bg-gray-100">
 <div class="container mx-auto">
 <div>
-<h3 class="text-3xl font-bold text-center mb-8 text-gray-800">My Skills</h3>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-  <!-- <div class="grid grid-cols-3 gap-4">
-    <div class="...">01</div>
-    <div class="...">02</div>
-    <div class="...">03</div>
-    <div class="col-span-2 ...">04</div>
-    <div class="...">05</div>
-    <div class="...">06</div>
-    <div class="col-span-2 ...">07</div>
-  </div> -->
+</section>      
 
-  <!-- <div class="grid grid-flow-col grid-rows-4 gap-4">
-    <div>01</div>
-   ... -->
-    <!-- <div>05</div>
-    <div class="row-span-3 grid grid-rows-subgrid gap-4">
-      <div class="row-start-2">06</div>
-    </div>
-    <div>07</div> -->
-    <!-- ... -->
-    <!-- <div>10</div>
-  </div> -->
-  
+<section class="py-16 px-4" id="skills">
+  <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">My Skills</h2>
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h4 class="text-xl font-semibold mb-2 text-gray-700">HTML5</h4>
-    <p class="text-gray-600">Building semantic and accessible web structures</p>
-  </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h5 class="text-xl font-semibold mb-2 text-gray-700">CSS3</h5>
-    <p class="text-gray-600">creating responsive and visually appealing designs</p>
-  </div>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-white">
+                      <img src="images/html5-removebg-preview.png" alt="HTML5 Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">HTML5</h3>
+                    <p class="text-gray-600">Building semantic and accessible web structures.</p>
+                  </div>
+              </div>
+          </div>
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h6 class="text-xl font-semibold mb-2 text-gray-700">JavaScript</h6>
-    <p class="text-gray-600">Interactive and dynamic Web applications</p>
-  </div>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                      <img src="images/css3-removebg-preview.png" alt="CSS3 Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-white">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">CSS3</h3>
+                    <p class="text-gray-600">Creating responsive and visually appealing designs.</p>
+                        </div>
+              </div>
+          </div>
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h7 class="text-xl font-semibold mb-2 text-gray-700">React</h7>
-    <p class="text-gray-600">Building scalable and maintainable userfaces</p>
-  </div>
-  
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h8 class="text-xl font-semibold mb-2 text-gray-700">Tailwind</h8>
-    <p class="text-gray-600">Rapid UI development with utility first framework </p>
-  </div>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-white">
+                      <img src="images/javascript-removebg-preview.png" alt="JavaScript Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">JavaScript</h3>
+                    <p class="text-gray-600">Developing interactive and dynamic web applications.</p>
+                        </div>
+              </div>
+          </div>
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg">
-    <h9 class="text-xl font-semibold mb-2 text-gray-700">Nodejs</h9>
-    <p class="text-gray-600">Developing Sever side applications and APIs</p>
-  </div>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                      <img src="images/tailwind-removebg-preview.png" alt="Tailwind CSS Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-white">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">Tailwind CSS</h3>
+                    <p class="text-gray-600">Rapid UI development with utility-first CSS framework.</p>
+                        </div>
+              </div>
+          </div>
 
-  <div class="skill-item bg-whitemrounded-lg p-6 shadow-md hover:shadow-lg ">
-    <h10 class="text-xl font-semibold mb-2 text-gray-700">Figma</h10>
-    <p class="text-gray-600">Creating and testing designs for digital products and experiences</p>
-</div>
-</div>
-</div>
-</section>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-white">
+                      <img src="images/react-removebg-preview.png" alt="React Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-700">React.js</h3>
+                    <p class="text-gray-600">Building scalable and maintainable user interfaces.</p>
+                        </div>
+              </div>
+          </div>
 
-<section>
-  <div>
-    <h2>My Projects</h2>
-    <div>
-      <div>
-        image 
-        <div>
-          <h3>project 1</h3>
-          <p>short description</p>
-          <a href="#">View Project</a>
-        </div>
+          <div class="flip-card">
+              <div class="flip-card-inner">
+                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+                      <img src="images/nodejs-removebg-preview.png" alt="Node.js Logo" class="w-32 h-32 object-contain">
+                  </div>
+                  <div class="flip-card-back bg-white">
+              <h3 class="text-xl font-semibold mb-2 text-gray-700">Node.js</h3>
+              <p class="text-gray-600">Developing server-side applications and APIs.</p>
+                  </div>
+              </div>
+          </div>
+
+
       </div>
-    </div>
   </div>
-
- 
 </section>
+
+       
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <section class="py-16 px-4 bg-gray-800" id="projects">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gray-100">My Projects</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <img src="./images/project1.png" alt="Project 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Flower Shop</h3>
+                        <p class="text-gray-600">A website for an online flower shop</p>
+                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <img src="./images/project2.png" alt="Project 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Modeling Agency</h3>
+                        <p class="text-gray-600">A website for a modeling training agency</p>
+                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <img src="./images/project3.png" alt="Project 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">To Do List</h3>
+                        <p class="text-gray-600">A simple to do list Web App</p>
+                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
+                    <img src="./images/project 4.png" alt="Project 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Article</h3>
+                        <p class="text-gray-600">An article about the importance of working out</p>
+                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4" id="contact">
+      <div class="container mx-auto">
+          <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Contact Me</h2>
+
+          <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8 bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
+              <form>
+                  <div class="mb-4">
+                      <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                      <input type="text" id="name" name="name" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Name">
+                  </div>
+
+                  <div class="mb-4">
+                      <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                      <input type="email" id="email" name="email" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Email">
+                  </div>
+
+                  <div class="mb-4">
+                      <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
+                      <input type="text" id="subject" name="subject" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Subject">
+                  </div>
+
+                  <div class="mb-6">
+                      <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message</label>
+                      <textarea id="message" name="message" rows="4" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Message"></textarea>
+                  </div>
+
+                  <div class="text-center">
+                      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">Send Message</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </section>
+
+    <footer class="bg-gray-800 text-white py-8 text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-2">Cindy Foli</h2>
+                        
+            <div class="flex justify-center items-center mb-6 flex-wrap">
+                <p class="mr-2">+233 200 763 663</p>
+                <span class="mx-2 hidden md:inline">|</span>
+                <a href="#" class="ml-2">cindyfoli07@gmail.com</a>
+            </div>
+          
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-x"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-github"></i>
+                </a>
+          
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="hover:text-gray-200 transition-colors">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            <hr class="border-red-400 my-4">
+            
+            <div class="text-sm">
+                <span>&copy;Cindy Foli - My Portfolio,</span>
+                <span> All Rights Reserved | Designed By </span>
+                <span class="font-semibold">Cindy Foli</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+  
 </body>
 </html>
 
