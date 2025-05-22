@@ -3,373 +3,589 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>Cindy Foli | Web Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
     <style>
       @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
+        from { width: 0 }
+        to { width: 100% }
       }
-
-
-      .typing-animation {
+      
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: white }
+      }
+      
+      .typing-line-1 {
         overflow: hidden;
         white-space: nowrap;
-        border-right: 0.15rem;
-        animation: typing 3s steps(50);
+        border-right: 0.15rem solid #fff;
+        width: 0;
+        animation: 
+          typing 1s steps(15, end) forwards,
+          blink-caret 0.75s step-end infinite;
+      }
+      
+      .typing-line-2 {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 0.15rem solid #fff;
+        width: 0;
+        opacity: 0;
+        animation: 
+          typing 1.5s steps(10, end) forwards,
+          blink-caret 0.75s step-end infinite;
+        animation-delay: 1.2s;
+      }
+      
+      .typing-line-3 {
+        overflow: hidden;
+        white-space: nowrap;
+        border-right: 0.15rem solid #fff;
+        width: 0;
+        opacity: 0;
+        animation: 
+          typing 1.8s steps(14, end) forwards,
+          blink-caret 0.75s step-end infinite;
+        animation-delay: 3s;
+      }
+      
+      .fade-in {
+        opacity: 0;
+        animation: fadeIn 1s ease forwards;
+      }
+      
+      .fade-in-delay-1 {
+        animation-delay: 5s;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
       
       .sticky-nav {
-            position: sticky;
-            top: 0;
-            z-index: 4;
-            background-color: rgba(255, 255, 255, 0.95); 
-            backdrop-filter: blur(10px); 
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .nav-links{
-            transition: all 0.3s ease-in-out;
-        }
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background-color: rgba(255, 255, 255, 0.95); 
+        backdrop-filter: blur(10px); 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-        .project-item {
-            transition: transform 0.3s ease-in-out;
-        }
+      .nav-links a {
+        transition: all 0.3s ease-in-out;
+        position: relative;
+      }
 
-        .project-item:hover {
-            transform: scale(1.05);
-        }
-        
-        .flip-card {
-            background-color: transparent;
-            width: 300px;
-            height: 200px;
-            perspective: 1000px;
-        }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #d946ef;
+        transition: width 0.3s ease-in-out;
+      }
 
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-        }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
 
-        .flip-card:hover .flip-card-inner {
-            transform: rotateY(180deg);
-        }
+      .project-item {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
 
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+      .project-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .flip-card {
+        background-color: transparent;
+        width: 100%;
+        height: 250px;
+        perspective: 1000px;
+        margin: 0 auto;
+      }
 
-        .flip-card-front {
-            background-color: #bbb;
-            color: black;
-            border-radius: 8px;
-        }
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+        border-radius: 12px;
+      }
 
-        .flip-card-back {
-            background-color: #2980b9;
-            color: white;
-            transform: rotateY(180deg);
-            border-radius: 8px;
-            padding: 1rem;
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        padding: 1.5rem;
+      }
+
+      .flip-card-front {
+        background-color: #ffffff;
+        color: black;
+      }
+
+      .flip-card-back {
+        color: white;
+        transform: rotateY(180deg);
+      }
+      
+      .social-icon {
+        transition: transform 0.3s ease;
+      }
+      
+      .social-icon:hover {
+        transform: translateY(-5px);
+      }
+      
+      .btn-gradient {
+        background: linear-gradient(to right, #d946ef, #fbbf24);
+        transition: all 0.3s ease;
+      }
+      
+      .btn-gradient:hover {
+        background: linear-gradient(to right, #fbbf24, #d946ef);
+        transform: translateY(-2px);
+      }
+      
+      /* Added scroll reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+      }
+      
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Pulse animation for profile picture */
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(217, 70, 239, 0.4);
         }
+        70% {
+          box-shadow: 0 0 0 15px rgba(217, 70, 239, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(217, 70, 239, 0);
+        }
+      }
+      
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
     </style>
   </head>
-  <body>
-    <section class="h-screen flex min-h-screen items-center justify-center bg-gradient-to-tr to-fuchsia-900 from-yellow-200 p-10" id="home">
-      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-9 items-center">
-        <div class="md:text-left text-white">
-          <p class="text-3xl font-bold mb-2 typing-animation" style="width: 5em">I am</p>
-          <h1 class="text-7xl font-bold mb-8 typing-animation" style="width: 5em">Cindy Foli</h1>
-          <p class="text-5xl font-bold mb-8 typing-animation" style="width: 5em">A Web Developer</p>
-            <a href="#" class="bg-white hover:bg-fuchsia-900 text-fuchsia-900 hover:text-white font-bold py-3 px-6 rounded-full">Download CV</a>
-        </div>
-        <div>
-          <img
-            src="./images/profile1_.png"
-            alt="My Profile Photo"
-            class="max-w-full h-screen bg-opacity-75 md:bg-opacity-50"
-          />
-        </div>
-      </div>
-    </section>
-    <nav>
-      <div>
-
-      </div>
-    </nav>
-  </body>
-</html>
-
-<body class="min-h-screen">
-
+  <body class="min-h-screen bg-gray-50">
     <nav class="sticky-nav p-4">
         <div class="container mx-auto flex justify-between items-center">
-            <img class="h-24 w-auto" src="./images/Cindy_Foli-removebg-preview.png" alt="Cindy Foli">
+            <div class="flex items-center">
+                <img class="h-16 w-auto" src="./images/Cindy_Foli-removebg-preview.png" alt="Cindy Foli">
+                <span class="ml-2 text-xl font-bold text-gray-800 hidden sm:block">Cindy Foli</span>
+            </div>
 
-            <div class="hidden md:flex gap-4 mt-2 space-x-4 nav-links" id="navLinks">
-                <a href="#home" class="hover:text-fuchsia-900">Home</a>
-                <a href="#about" class="hover:text-fuchsia-800">About</a>
-                <a href="#skills" class="hover:text-fuchsia-700">Skills</a>
-                <a href="#projects" class="hover:text-fuchsia-600">Project Gallery</a>
-                <a href="#contact" class="hover:text-fuchsia-500">Contact</a>
-              </div>
+            <div class="hidden md:flex gap-4 mt-2 space-x-6 nav-links" id="navLinks">
+                <a href="#home" class="text-gray-800 hover:text-fuchsia-600 font-medium">Home</a>
+                <a href="#about" class="text-gray-800 hover:text-fuchsia-600 font-medium">About</a>
+                <a href="#skills" class="text-gray-800 hover:text-fuchsia-600 font-medium">Skills</a>
+                <a href="#projects" class="text-gray-800 hover:text-fuchsia-600 font-medium">Projects</a>
+                <a href="#contact" class="text-gray-800 hover:text-fuchsia-600 font-medium">Contact</a>
+            </div>
               
-            <button id="menuButton" class="md:hidden">
+            <button id="menuButton" class="md:hidden text-fuchsia-800 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
         </div>
+
+
+        <div class="hidden md:hidden" id="mobileMenu">
+            <div class="px-2 pt-2 pb-3 space-y-1 text-center">
+                <a href="#home" class="block py-2 text-fuchsia-800">Home</a>
+                <a href="#about" class="block py-2 text-fuchsia-800">About</a>
+                <a href="#skills" class="block py-2 text-fuchsia-800">Skills</a>
+                <a href="#projects" class="block py-2 text-fuchsia-800">Projects</a>
+                <a href="#contact" class="block py-2 text-fuchsia-800">Contact</a>
+            </div>
+        </div>
     </nav>
- 
 
-<section class="bg-gray-900 text-white py-16 px-6 md:px-12 lg:px-24" id="about">
-  <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-4xl font-bold bg-clip-text bg-gradient-to-r from-fuchsia-400 to-gray-600">
-          What I Do
-      </h2>
-      <p class="mt-6 text-lg text-gray-300 leading-relaxed text-justify md:text-center">
-          I craft digital experiences that blend logic with creativity, 
-          turning complex ideas into elegant solutions.passionate about building efficient, visually appealing, user-friendly websites and applications, focusing on clean code, excellent performance and seamless user experiences.
-      </p>
-  </div>
-</section>
-
-<section class="bg-gray-100">
-<div class="container mx-auto">
-<div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-
-</section>      
-
-<section class="py-16 px-4" id="skills">
-  <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">My Skills</h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-white">
-                      <img src="images/html5-removebg-preview.png" alt="HTML5 Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-700">HTML5</h3>
-                    <p class="text-gray-600">Building semantic and accessible web structures.</p>
-                  </div>
-              </div>
-          </div>
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                      <img src="images/css3-removebg-preview.png" alt="CSS3 Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-white">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-700">CSS3</h3>
-                    <p class="text-gray-600">Creating responsive and visually appealing designs.</p>
-                        </div>
-              </div>
-          </div>
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-white">
-                      <img src="images/javascript-removebg-preview.png" alt="JavaScript Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-700">JavaScript</h3>
-                    <p class="text-gray-600">Developing interactive and dynamic web applications.</p>
-                        </div>
-              </div>
-          </div>
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                      <img src="images/tailwind-removebg-preview.png" alt="Tailwind CSS Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-white">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-700">Tailwind CSS</h3>
-                    <p class="text-gray-600">Rapid UI development with utility-first CSS framework.</p>
-                        </div>
-              </div>
-          </div>
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-white">
-                      <img src="images/react-removebg-preview.png" alt="React Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-700">React.js</h3>
-                    <p class="text-gray-600">Building scalable and maintainable user interfaces.</p>
-                        </div>
-              </div>
-          </div>
-
-          <div class="flip-card">
-              <div class="flip-card-inner">
-                  <div class="flip-card-front bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-                      <img src="images/nodejs-removebg-preview.png" alt="Node.js Logo" class="w-32 h-32 object-contain">
-                  </div>
-                  <div class="flip-card-back bg-white">
-              <h3 class="text-xl font-semibold mb-2 text-gray-700">Node.js</h3>
-              <p class="text-gray-600">Developing server-side applications and APIs.</p>
-                  </div>
-              </div>
-          </div>
-
-
+ <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-fuchsia-900 to-yellow-200 p-6">
+  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="text-white md:text-left text-center order-2 md:order-1">
+      <p class="text-xl font-bold mb-2">Hello, I am</p>
+      <h1 class="text-5xl md:text-7xl font-bold mb-4">Cindy Foli</h1>
+      <p class="text-3xl md:text-5xl font-bold mb-8">A Web Developer</p>
+      <div class="flex flex-wrap justify-center md:justify-start gap-4">
+        <a href="https://docs.google.com/document/d/1lRht5o9nSdvrh0O5B-_9KmMdMA7ZdvsZ/edit" class="bg-fuchsia-800 hover:bg-fuchsia-700 text-white font-bold py-3 px-6 rounded-full shadow-lg">
+          Download CV
+        </a>
+        <a href="#contact" class="bg-white hover:bg-gray-100 text-fuchsia-900 font-bold py-3 px-6 rounded-full shadow-lg">
+          Contact Me
+        </a>
       </div>
+    </div>
+    <div class="order-1 md:order-2 flex justify-center">
+      <img
+        src="./images/profile1_.png"
+        alt="My Profile Photo"
+        class="max-w-full h-auto rounded-2xl shadow-2xl"
+      />
+    </div>
   </div>
 </section>
 
-       
-    </style>
-</head>
-<body class="bg-gray-100">
 
-    <section class="py-16 px-4 bg-gray-800" id="projects">
+ <section id="about" class="py-16 px-6 bg-gradient-to-br from-gray-900 to-fuchsia-900 reveal">
+  <div class="max-w-3xl mx-auto text-center">
+    <h2 class="text-4xl font-bold text-white mb-8">What I Do</h2>
+    <div class="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg">
+      <p class="text-white text-lg leading-relaxed">
+        I design and build clean, responsive websites and apps that combine creativity with performance, delivering smooth user experiences through efficient code and thoughtful design.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+    <section class="py-20 px-6 bg-gray-50 reveal" id="skills">
+      <div class="container mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">My Skills</h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <div class="flip-card reveal">
+                  <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                          <img src="images/html5-removebg-preview.png" alt="HTML5 Logo" class="w-32 h-32 object-contain">
+                          <h3 class="text-xl font-semibold mt-4 text-gray-700">HTML5</h3>
+                      </div>
+                      <div class="flip-card-back bg-gradient-to-br from-fuchsia-600 to-purple-700">
+                        <h3 class="text-2xl font-semibold mb-4">HTML5</h3>
+                        <p class="text-lg">Building semantic and accessible web structures with modern standards.</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="flip-card reveal">
+                  <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                          <img src="images/css3-removebg-preview.png" alt="CSS3 Logo" class="w-32 h-32 object-contain">
+                          <h3 class="text-xl font-semibold mt-4 text-gray-700">CSS3</h3>
+                      </div>
+                      <div class="flip-card-back bg-gradient-to-br from-blue-500 to-teal-400">
+                        <h3 class="text-2xl font-semibold mb-4">CSS3</h3>
+                        <p class="text-lg">Creating responsive and visually appealing designs with modern styling techniques.</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="flip-card reveal">
+                  <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                          <img src="images/javascript-removebg-preview.png" alt="JavaScript Logo" class="w-32 h-32 object-contain">
+                          <h3 class="text-xl font-semibold mt-4 text-gray-700">JavaScript</h3>
+                      </div>
+                      <div class="flip-card-back bg-gradient-to-br from-yellow-400 to-orange-500">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900">JavaScript</h3>
+                        <p class="text-lg text-gray-900">Developing interactive and dynamic web applications with modern JS practices.</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="flip-card reveal">
+                  <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                          <img src="images/tailwind-removebg-preview.png" alt="Tailwind CSS Logo" class="w-32 h-32 object-contain">
+                          <h3 class="text-xl font-semibold mt-4 text-gray-700">Tailwind CSS</h3>
+                      </div>
+                      <div class="flip-card-back bg-gradient-to-br from-cyan-500 to-blue-600">
+                        <h3 class="text-2xl font-semibold mb-4">Tailwind CSS</h3>
+                        <p class="text-lg">Rapid UI development with utility-first CSS framework for modern designs.</p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="flip-card reveal">
+                  <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                          <img src="images/react-removebg-preview.png" alt="React Logo" class="w-32 h-32 object-contain">
+                          <h3 class="text-xl font-semibold mt-4 text-gray-700">React.js</h3>
+                      </div>
+                      <div class="flip-card-back bg-gradient-to-br from-blue-400 to-indigo-600">
+                        <h3 class="text-2xl font-semibold mb-4">React.js</h3>
+                        <p class="text-lg">Building scalable and maintainable user interfaces with component-based architecture.</p>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+    </section>
+
+    <section class="py-20 px-6 bg-gradient-to-br from-gray-800 to-gray-900 reveal" id="projects">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-8 text-gray-100">My Projects</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 text-white">My Projects</h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-                    <img src="./images/project1.png" alt="Project 1" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Flower Shop</h3>
-                        <p class="text-gray-600">A website for an online flower shop</p>
-                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project6.png" alt="Project 1" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800"> Smithfield </h3>
+                        <p class="text-gray-600 mb-4">An agric ecommerce website.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="https://smithfield-agribusiness.netlify.app/" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">View Live</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project5.png" alt="Project 1" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800"> Telemed </h3>
+                        <p class="text-gray-600 mb-4">A modern telemedicine website.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="finaldemotelemed.netlify.app" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">View Live</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project1.png" alt="Project 1" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Flower Shop</h3>
+                        <p class="text-gray-600 mb-4">A modern e-commerce website for an online flower shop with elegant design.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">View Live</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-                    <img src="./images/project2.png" alt="Project 2" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Modeling Agency</h3>
-                        <p class="text-gray-600">A website for a modeling training agency</p>
-                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project2.png" alt="Project 2" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Modeling Agency</h3>
+                        <p class="text-gray-600 mb-4">A professional website for a modeling training agency with portfolio showcase.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">View Live</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-                    <img src="./images/project3.png" alt="Project 3" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-700">To Do List</h3>
-                        <p class="text-gray-600">A simple to do list Web App</p>
-                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project3.png" alt="Project 3" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">To Do List</h3>
+                        <p class="text-gray-600 mb-4">A simple yet powerful task management web application with local storage.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">View Live</a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg">
-                    <img src="./images/project 4.png" alt="Project 4" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-700">Article</h3>
-                        <p class="text-gray-600">An article about the importance of working out</p>
-                        <a href="#" class="mt-2 text-blue-500 hover:underline block">View Project</a>
+                <div class="project-item bg-white rounded-xl overflow-hidden shadow-xl reveal">
+                    <div class="relative overflow-hidden h-56">
+                        <img src="./images/project 4.png" alt="Project 4" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Fitness Article</h3>
+                        <p class="text-gray-600 mb-4">An informative article about the importance of working out with research-backed content.</p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-fuchsia-600 hover:text-fuchsia-800 font-medium hover:underline">Read Article</a>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-4" id="contact">
+    <section class="py-20 px-6 reveal" id="contact">
       <div class="container mx-auto">
-          <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Contact Me</h2>
+          <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Get In Touch</h2>
 
-          <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8 bg-gradient-to-tr to-fuchsia-900 from-yellow-200">
-              <form>
-                  <div class="mb-4">
-                      <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                      <input type="text" id="name" name="name" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Name">
+          <div class="max-w-3xl mx-auto">
+              <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-fuchsia-900 to-yellow-200 rounded-xl p-8 text-white shadow-xl">
+                      <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                      
+                      <div class="space-y-6">
+                          <div class="flex items-center">
+                              <i class="fas fa-phone-alt text-yellow-200 mr-4 text-xl"></i>
+                              <span>+233 200 763 663</span>
+                          </div>
+                          
+                          <div class="flex items-center">
+                              <i class="fas fa-envelope text-yellow-200 mr-4 text-xl"></i>
+                              <span>cindyfoli07@gmail.com</span>
+                          </div>
+                          
+                          <div class="flex items-center">
+                              <i class="fas fa-map-marker-alt text-yellow-200 mr-4 text-xl"></i>
+                              <span>Accra, Ghana</span>
+                          </div>
+                      </div>
+                      
+                      <div class="mt-12">
+                          <h4 class="text-xl font-semibold mb-4">Connect with me</h4>
+                          <div class="flex space-x-6">
+                              <a href="#" class="social-icon text-white hover:text-yellow-200">
+                                  <i class="fab fa-github text-2xl"></i>
+                              </a>
+                              <a href="#" class="social-icon text-white hover:text-yellow-200">
+                                  <i class="fab fa-linkedin-in text-2xl"></i>
+                              </a>
+                              <a href="#" class="social-icon text-white hover:text-yellow-200">
+                                  <i class="fab fa-instagram text-2xl"></i>
+                              </a>
+                              <a href="#" class="social-icon text-white hover:text-yellow-200">
+                                  <i class="fab fa-twitter text-2xl"></i>
+                              </a>
+                          </div>
+                      </div>
                   </div>
+                  
+                  <div class="lg:col-span-3 bg-white rounded-xl shadow-xl p-8">
+                      <form>
+                          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                              <div>
+                                  <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name</label>
+                                  <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors" placeholder="Your Name">
+                              </div>
 
-                  <div class="mb-4">
-                      <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                      <input type="email" id="email" name="email" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Email">
-                  </div>
+                              <div>
+                                  <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email</label>
+                                  <input type="email" id="email" name="email" class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors" placeholder="Your Email">
+                              </div>
+                          </div>
 
-                  <div class="mb-4">
-                      <label for="subject" class="block text-gray-700 text-sm font-bold mb-2">Subject</label>
-                      <input type="text" id="subject" name="subject" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Subject">
-                  </div>
+                          <div class="mb-6">
+                              <label for="subject" class="block text-gray-700 text-sm font-medium mb-2">Subject</label>
+                              <input type="text" id="subject" name="subject" class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors" placeholder="Subject">
+                          </div>
 
-                  <div class="mb-6">
-                      <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message</label>
-                      <textarea id="message" name="message" rows="4" class="w-full border rounded-lg py-2 px-3 focus:outline-none focus:ring focus:border-blue-300" placeholder="Your Message"></textarea>
-                  </div>
+                          <div class="mb-6">
+                              <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Your Message</label>
+                              <textarea id="message" name="message" rows="5" class="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:border-fuchsia-500 transition-colors" placeholder="Your Message"></textarea>
+                          </div>
 
-                  <div class="text-center">
-                      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">Send Message</button>
+                          <div class="text-right">
+                              <button type="submit" class="btn-gradient text-white font-bold py-3 px-8 rounded-lg shadow-lg">Send Message</button>
+                          </div>
+                      </form>
                   </div>
-              </form>
+              </div>
           </div>
       </div>
-  </section>
+    </section>
 
-    <footer class="bg-gray-800 text-white py-8 text-center">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-2">Cindy Foli</h2>
-                        
-            <div class="flex justify-center items-center mb-6 flex-wrap">
-                <p class="mr-2">+233 200 763 663</p>
-                <span class="mx-2 hidden md:inline">|</span>
-                <a href="#" class="ml-2">cindyfoli07@gmail.com</a>
-            </div>
-          
-            <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="hover:text-gray-200 transition-colors">
-                    <i class="fab fa-x"></i>
-                </a>
-                <a href="#" class="hover:text-gray-200 transition-colors">
-                    <i class="fab fa-github"></i>
-                </a>
-          
-                <a href="#" class="hover:text-gray-200 transition-colors">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="hover:text-gray-200 transition-colors">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">Cindy Foli</h2>
+                    <p class="text-gray-400 mt-2">Web Developer</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
             </div>
             
-            <hr class="border-red-400 my-4">
+            <hr class="border-gray-800 my-8">
             
-            <div class="text-sm">
-                <span>&copy;Cindy Foli - My Portfolio,</span>
-                <span> All Rights Reserved | Designed By </span>
-                <span class="font-semibold">Cindy Foli</span>
+            <div class="text-center text-gray-500">
+                <p>&copy; 2025 Cindy Foli Portfolio. All Rights Reserved | Designed with <span class="text-red-500">♥</span> by Cindy Foli</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuButton').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+        
+        // Reveal animations on scroll
+        window.addEventListener('scroll', reveal);
+        
+        // Trigger once on load for elements already in view
+        window.addEventListener('DOMContentLoaded', reveal);
+        
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+    </script>
 </body>
 </html>
-  
-</body>
-</html>
-
-
-  
-
-

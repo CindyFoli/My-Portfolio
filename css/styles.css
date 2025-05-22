@@ -1,45 +1,85 @@
- *{
-
-  .figmacardinner{
+* {
+  .figmacardinner {
     position: relative;
-   } 
+  }
 
-.figmacard:hover  {
-  transform: rotateY(180deg);
-  transform-style: preserve-3d;
-  transition: transform 0.999s;
-}
+  .figmacard:hover {
+    transform: rotateY(180deg);
+    transform-style: preserve-3d;
+    transition: transform 0.999s;
+  }
 
-.figmacardfront,
-.figmacardback {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; 
-} 
+  .figmacardfront,
+  .figmacardback {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
 
-.figmacardfront {
-  background-color: #6A2C70;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  border: 10px solid #6A2C70;
-  border-radius: 10px;
-  justify-content: center;
-  font-size: 24px;
-  transform: rotateY(0deg);
-}
+  .figmacardfront {
+    background-color: #6a2c70;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border: 10px solid #6a2c70;
+    border-radius: 10px;
+    justify-content: center;
+    font-size: 24px;
+    transform: rotateY(0deg);
+  }
 
-.figmacardback {
-  background-color: #F08A5D;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  border: 10px solid #F08A5D;
-  border-radius: 10px;
-  justify-content: center;
-  font-size: 24px;
-  transform: rotateY(180deg);
-}
+  .figmacardback {
+    background-color: #f08a5d;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border: 10px solid #f08a5d;
+    border-radius: 10px;
+    justify-content: center;
+    font-size: 24px;
+    transform: rotateY(180deg);
+  }
 
+  .typing-line-1 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15rem solid #fff;
+    width: 0;
+    animation: typing 1s steps(15, end) forwards,
+      blink-caret 0.75s step-end infinite;
+  }
+
+  .typing-line-2 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15rem solid #fff;
+    width: 0;
+    opacity: 0;
+    animation: typing 1.5s steps(10, end) forwards,
+      blink-caret 0.75s step-end infinite;
+    animation-delay: 1.2s;
+  }
+
+  .typing-line-3 {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.15rem solid #fff;
+    width: 0;
+    opacity: 0;
+    animation: typing 1.8s steps(14, end) forwards,
+      blink-caret 0.75s step-end infinite;
+    animation-delay: 3s;
+  }
+
+  @keyframes typing {
+    0% {
+      width: 0;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 1;
+    }
+  }
 }
